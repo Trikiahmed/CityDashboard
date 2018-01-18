@@ -113,7 +113,7 @@ def newdata92(code):
         'Pourcentage de femmes',
         'Taux de propriétaires',
         'Accès à la propriété',
-        'Nombre de personnes par logement',
+        'Nombre de personnes par logement'
         ]
     values = [
         data['Pharmacy_perfume'],
@@ -137,7 +137,7 @@ def newdata92(code):
         data['parity'],
         data['property_rate'],
         data['property_access'],
-        data['occupation_rate'],
+        data['occupation_rate']
         ]
 
     return [indics, [round(v,2) for v in values]]
@@ -159,7 +159,7 @@ def newdataEntreprise92(code):
         'Nb creation entreprises Industrie',
         'Nb creation entreprises Commerce',
         'Nb creation entreprises Services',
-        'Nb creation Construction',
+        'Nb creation Construction'
         ]
     values = [
         data['Entrepreneurship'],
@@ -172,10 +172,34 @@ def newdataEntreprise92(code):
         data['company_creation_Industry'],
         data['company_creation_trade'],
         data['company_creation_Services'],
-        data['company_creation_Construction'],
+        data['company_creation_Construction']
         ]
 
     return [indics, [round(v,2) for v in values]]
+
+
+def Graph_entreprises(code):
+    
+    reader_ND = open('static_dic/newdataEntreprise92.json', 'r')
+    file_ND = json.load(reader_ND)
+    data = file_ND[code]
+
+    name = [ 
+        'Industrie',
+        'Commerce',
+        'Services',
+        'Construction'
+        ]
+    values = [
+        data['Industry_rate'],
+        data['trade_rate'],
+        data['services_rate'],
+        data['construction_rate']
+        ]
+    fig1, ax1 = plt.subplots()
+    ax1.pie(values, labels=name, autopct='%1.1f%%')
+    ax1.axis('equal')
+    plt.show()
 
 def printpop(code):
     
